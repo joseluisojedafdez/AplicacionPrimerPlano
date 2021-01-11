@@ -1,8 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Servicio en Primer Plano</string>
-    <string name="textview">TextView</string>
     <string name="notification_name">Esta es la notificacion</string>
-    <string name="title">Ejecutando la tarea</string>
     <string name="messsage_start">START</string>
     <string name="message_2_user">Comenzando la tarea</string>
     <string name="messsage_stop">STOP</string>
