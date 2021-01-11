@@ -19,7 +19,7 @@ class ForegroundService: Service() {
 
     private val mHandler= Handler()
     private lateinit var mRunnable: Runnable
-
+    private var count=0
 
 
     companion object {
@@ -93,14 +93,13 @@ class ForegroundService: Service() {
     private fun runTask() {
         Log.d( "ForegroundService" , "runtask" )
         val delayTime=1000*7L
-        var count=0
+
         
         mRunnable = Runnable {
-
+            count += 1
             notifyNextEvent()
             mHandler.postDelayed(mRunnable, delayTime)
-            count += 1
-            Log.d("F", "runTask: Contador=$count")
+
         }
         mHandler.postDelayed(mRunnable, delayTime)
 
@@ -109,11 +108,11 @@ class ForegroundService: Service() {
     private fun notifyNextEvent() {
 
         Log.d( "ForegroundService" , "notifyNextEvent" )
-      
+        Log.d("ForegroundService", "runTask: Contador=$count")
 
-        /*val message = handlerCallback.obtainMessage( 1 , "msg" )
-        message. data .putString( "Estado" , "Tarea ejecutada con éxito" )
-        message.sendToTarget()*/
+        val message = handlerCallback.obtainMessage( 1 , "msg" )
+        message. data .putString( "Contador",count.toString())
+        message.sendToTarget()
 
     }
     }

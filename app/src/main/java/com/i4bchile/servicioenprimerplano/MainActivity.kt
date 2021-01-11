@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import com.i4bchile.servicioenprimerplano.databinding.ActivityMainBinding
 
 
@@ -28,9 +29,10 @@ notificado cuando ocurra un evento, implementando handleMessage().
 
 
 class MainActivity : AppCompatActivity(), Handler.Callback {
+    lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding= ActivityMainBinding.inflate(layoutInflater)
+        binding= ActivityMainBinding.inflate(layoutInflater)
 
         binding.btStartStop.setOnClickListener {
             //Aquí se implementan los métodos para iniciar y detener el servicio.
@@ -57,6 +59,9 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
     }
 
     override fun handleMessage(msg: Message): Boolean {
-        TODO("Not yet implemented")
+        Log.d("MainActivity", "handleMessage: ${msg.data}")
+        val count=msg.data.get("Contador")
+        binding.tvCounter.text=count.toString()
+        return true
     }
 }
